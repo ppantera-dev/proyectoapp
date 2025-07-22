@@ -1,11 +1,14 @@
-# proyectoapp/blog/urls.py
+# proyectoapp/mi_blog/urls.py (Archivo URL principal del proyecto)
 
-from django.urls import path
-from . import views
+"""
+URL configuration for mi_blog project.
+
+The `urlpatterns` list routes URLs to views.
+"""
+from django.contrib import admin
+from django.urls import path, include # <--- Asegúrate de que 'include' esté aquí
 
 urlpatterns = [
-    path('', views.home_blog, name='home_blog'),
-    # Puedes añadir más rutas aquí para tu blog, por ejemplo:
-    # path('post/<int:pk>/', views.detalle_post, name='detalle_post'),
-    # path('acerca-de/', views.about, name='about'),
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')), # <--- ¡SOLO ESTA LÍNEA DEBE IR AQUÍ PARA TU BLOG!
 ]
