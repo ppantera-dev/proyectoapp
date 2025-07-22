@@ -79,3 +79,36 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+# ... (Tu código actual de settings.py) ...
+
+# Configuraciones de Archivos Estáticos y Media (Asegúrate que estas estén bien)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), # Para archivos estáticos globales como el logo del navbar
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Donde se guardarán las imágenes subidas por los usuarios (Ej: imágenes de artículos, avatares)
+
+# Configuraciones para la redirección de usuarios (muy importantes para autenticación)
+LOGIN_REDIRECT_URL = 'blog:home' # Después de loguearse, ir a la vista 'home' de la app 'blog'
+LOGOUT_REDIRECT_URL = 'blog:home' # Después de desloguearse, ir a la vista 'home' de la app 'blog'
+
+# Configuraciones de CKEditor
+CKEDITOR_UPLOAD_PATH = 'uploads/' # Directorio dentro de MEDIA_ROOT para las subidas de CKEditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source'],
+            ['Image', 'Youtube', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Maximize'],
+        ],
+        'extraPlugins': 'youtube', # Para incrustar videos de YouTube
+    }
+}
