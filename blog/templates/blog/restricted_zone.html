@@ -1,0 +1,14 @@
+{# proyectoapp/blog/templates/blog/restricted_zone.html #}
+{% extends 'base.html' %}
+
+{% block title %}Zona Restringida de Metal{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">¡Bienvenido a la Zona Restringida de Metal! 🤘</h1>
+<p class="lead">Solo los verdaderos guerreros del metal tienen acceso a este sagrado lugar.</p>
+<p>Aquí podríamos tener contenido exclusivo, foros privados, descargas de demos, etc.</p>
+<p>Gracias por ser parte de nuestra legión.</p>
+<p>
+    <a href="{% url 'blog:home' %}" class="btn btn-metal">Volver al Home</a>
+</p>
+{% endblock %}
