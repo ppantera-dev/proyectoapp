@@ -1,0 +1,18 @@
+{# proyectoapp/blog/templates/blog/article_confirm_delete.html #}
+{% extends 'base.html' %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+<div class="card article-card p-4">
+    <h1 class="mb-4 text-danger">Confirmar Eliminación</h1>
+    <p class="lead">¿Estás seguro de que deseas eliminar el artículo: "<strong>{{ object.title }}</strong>"?</p>
+    <p class="text-warning">¡Esta acción no se puede deshacer!</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Sí, Eliminar</button>
+        <a href="{% url 'blog:article_detail' object.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
