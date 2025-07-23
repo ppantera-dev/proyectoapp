@@ -1,0 +1,45 @@
+{# proyectoapp/blog/templates/blog/article_detail.html #}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<article class="article-card p-4">
+    <h1 class="mb-3">{{ article.title }}</h1>
+    {% if article.subtitle %}
+        <h2 class="text-muted mb-4">{{ article.subtitle }}</h2>
+    {% endif %}
+
+    {% if article.image %}
+        <img src="{{ article.image.url }}" class="img-fluid rounded mb-4" alt="{{ article.title }}">
+    {% endif %}
+
+    <p class="text-muted small mb-2">Publicado por {{ article.author.username }} el {{ article.published_date|date:"d M, Y \a\l\a\s H:i" }}</p>
+    {% if article.band_name or article.genre or article.release_year %}
+        <p class="text-muted small">
+            {% if article.band_name %}Banda: {{ article.band_name }}{% endif %}
+            {% if article.genre %}{% if article.band_name %} | {% endif %}Género: {{ article.genre }}{% endif %}
+            {% if article.release_year %}{% if article.band_name or article.genre %} | {% endif %}Año: {{ article.release_year }}{% endif %}
+        </p>
+    {% endif %}
+
+    <hr style="border-color: #666;">
+
+    <div class="ck-content"> {# Clase para estilos específicos de CKEditor #}
+        {{ article.content|safe }} {# El |safe es crucial para renderizar el HTML de CKEditor #}
+    </div>
+
+    <hr style="border-color: #666;">
+
+    <div class="mt-4 d-flex justify-content-between">
+        <a href="{% url 'blog:article_list' %}" class="btn btn-metal">Volver a Artículos</a>
+        {% if user.is_authenticated and user == article.author or user.is_superuser %}
+            <div>
+                <a href="{% url 'blog:article_update' article.pk %}" class="btn btn-outline-info">Editar Artículo</a>
+                <a href="{% url 'blog:article_delete' article.pk %}" class="btn btn-outline-danger">Eliminar Artículo</a>
+            </div>
+        {% endif %}
+    </div>
+</article>
+{% endblock %}
