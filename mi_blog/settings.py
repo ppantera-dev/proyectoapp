@@ -1,6 +1,6 @@
 # proyectoapp/mi_blog/settings.py
 
-import os # ¡Importante: asegúrate de que esta línea esté al principio!
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -9,10 +9,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j%u9$7fa7$grm25z(l@tc_d+e0ewu#h#-b!y}1qpQ5k9a' # ¡Mantén esta clave secreta en producción!
+SECRET_KEY = 'django-insecure-j%u9$7fa7$grm25z(l@tc_d+e0ewu#h#-b!y}1qpQ5k9a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # Asegúrate de que esté en True para desarrollo
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -26,11 +26,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',  # Tu aplicación de blog
-    'ckeditor', # Para el editor de texto enriquecido
-    'ckeditor_uploader', # Para la subida de imágenes en CKEditor
-    # 'accounts', # Descomentar cuando crees la app de usuarios
-    # 'messages_app', # Descomentar cuando crees la app de mensajes
+    'blog',
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'accounts',
+    # 'messages_app',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +48,7 @@ ROOT_URLCONF = 'mi_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], # Directorio para plantillas globales (como base.html)
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,13 +97,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-ar' # Cambiado a español argentino
+LANGUAGE_CODE = 'es-ar'
 
-TIME_ZONE = 'America/Argentina/Buenos_Aires' # Ajustado a tu zona horaria
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
-USE_L10N = True # Deprecado en Django 4.0+, pero aún puede estar presente. Se maneja con USE_TZ.
+USE_L10N = True
 
 USE_TZ = True
 
@@ -113,15 +113,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), # Para archivos estáticos globales como el logo del navbar
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Media files (user uploaded content)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Donde se guardarán las imágenes subidas por los usuarios (ej: imágenes de artículos, avatares de perfil)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # CKEditor settings
-CKEDITOR_UPLOAD_PATH = 'uploads/' # Carpeta dentro de MEDIA_ROOT para las subidas de CKEditor
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
@@ -134,9 +134,9 @@ CKEDITOR_CONFIGS = {
             ['TextColor', 'BGColor'],
             ['Maximize', 'ShowBlocks'],
             ['Source', '-', 'Undo', 'Redo'],
-            ['CodeSnippet'], # Necesitarás instalar 'django-ckeditor-syntaxhighlight' si quieres realzar código
+            ['CodeSnippet'],
         ],
-        'extraPlugins': 'codesnippet', # Asegúrate de que esto esté aquí si usas CodeSnippet
+        'extraPlugins': 'codesnippet',
     }
 }
 
@@ -146,7 +146,7 @@ CKEDITOR_CONFIGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configuración para la redirección de usuarios (muy importantes para autenticación)
+# Configuración para la redirección de usuarios
 LOGIN_REDIRECT_URL = 'blog:home'
 LOGOUT_REDIRECT_URL = 'blog:home'
-LOGIN_URL = 'accounts:login' # Esta URL se usará para redirigir a los usuarios no autenticados
+LOGIN_URL = 'accounts:login'
