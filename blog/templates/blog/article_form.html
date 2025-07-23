@@ -1,0 +1,24 @@
+{# proyectoapp/blog/templates/blog/article_form.html #}
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} {# Necesario para crispy forms #}
+
+{% block title %}
+    {% if is_update %}Editar Artículo{% else %}Crear Nuevo Artículo{% endif %}
+{% endblock %}
+
+{% block extra_head %}
+    {# Incluye los archivos JS de CKEditor aquí #}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{% if is_update %}Editar Artículo{% else %}Crear Nuevo Artículo{% endif %}</h1>
+
+<form method="post" enctype="multipart/form-data"> {# IMPORTANTE: enctype="multipart/form-data" para subir archivos #}
+    {% csrf_token %} {# Token de seguridad #}
+    {{ form|crispy }} {# Renderiza el formulario con estilos de Crispy Forms #}
+    <button type="submit" class="btn btn-metal mt-3">{% if is_update %}Actualizar Artículo{% else %}Crear Artículo{% endif %}</button>
+    <a href="{% url 'blog:article_list' %}" class="btn btn-secondary mt-3">Cancelar</a>
+</form>
+{% endblock %}
